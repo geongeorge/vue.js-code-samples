@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Components</title>
+</head>
+<link rel="stylesheet" href="bulma.css">
+<body>
+  <div id="app">
+    <my-head></my-head>
+    <my-head></my-head>
+    <my-head></my-head>
+    <my-head></my-head>
+    <my-head></my-head>
+
+
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    Vue.component("my-head",
+    {
+      template : "<h1 @click='count++'>{{count}}<br /><hr /></h1>",
+      data: () => {
+        return {
+          count : 0,
+        }
+      }
+    })
+    new Vue({
+      el:"#app"
+    })
+  </script>
+</body>
+</html>
