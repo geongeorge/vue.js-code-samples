@@ -74,14 +74,31 @@
       </div>
       <div class="column"></div>
   </div>
+  <modal v-if="showModal" @change="showModal=false">Completed!</modal>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script>
+Vue.component("modal",{
+  template: `<div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+    <div class="box">
+      <p>
+        <slot></slot>
+      </p>
+      </p>
+    </div>
+    </div>
+    <button @click="$emit('change')" class="modal-close is-large" aria-label="close"></button>
+  </div>`,
+});
   var app = new Vue({
     el: '#app',
     data: {
       message: "hello",
       newone: "",
+      showModal: false,
       tasks : [
         {message: "Do the laundry", state:"complete",'edit':false},
         {message: "Wash Face", state:"incomplete",'edit':false},
@@ -94,6 +111,7 @@
     methods: {
       done(something) {
         something.state = "complete";
+        this.modalshow();
       },
       didnt(something) {
         something.state = "incomplete";
@@ -105,6 +123,9 @@
       },
       editme (thing, val){
         thing.edit = val;
+      },
+      modalshow(){
+        this.showModal = true;
       }
 
     },
