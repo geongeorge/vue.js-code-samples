@@ -1,0 +1,49 @@
+<!doctype HTML>
+<html>
+<head>
+  <title>Vue tabs project</title>
+<link rel="stylesheet" href="bulma.css" />
+</head>
+<style>
+ .container {
+   margin-top: 50px;
+ }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div id="app">
+      <h1 class="title">Tv Shows</h1>
+      <tabs>
+        <tab name="Dr Who" :selected="true">
+          I'm the Doctor. Well, they call me the Doctor.
+          I don't know why. I call me the Doctor too.
+           I still don't know why. Aw, you're all Mr. Grumpy Face today.
+           It's a fez. I wear a fez now. Fezes are cool. I'm the Doctor.
+            Well, they call me the Doctor.
+          I don't know why. I call me the Doctor too. I still don't know why.
+        </tab>
+        <tab name="Dexter">
+          God created pudding, and then he rested.
+          Finding a needle in a haystack isn't hard when every straw is
+           computerized. I've lived in darkness a long time.
+            Over the years my eyes adjusted until the dark
+            became my world and I could see.
+        </tab>
+        <tab name="Futurama">
+            There's one way and only one way to determine if an animal is
+            intelligent. Dissect its brain! It's just like the story of the
+            grasshopper and the octopus. All year long, the grasshopper kept
+            burying acorns for winter, while the octopus mooched off his
+            girlfriend and watched TV. But then the winter came,
+            and the grasshopper died, and the octopus ate all his acorns.
+             Also he got a race car.
+             Is any of this getting through to you?
+        </tab>
+      </tabs>
+    </div>
+  </div>
+  <script src="vue.js"></script>
+  <script src="tabs.js"></script>
+</body>
+</html>
