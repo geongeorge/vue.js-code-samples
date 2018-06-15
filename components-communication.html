@@ -1,0 +1,52 @@
+<html>
+<head>
+  <title>Communication between components</title>
+  <link rel="stylesheet" href="bulma.css">
+  <style>
+     .container {
+       margin-top: 100px;
+     }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="app">
+      <coupon @applied="tellEveryone(true)" @empty="tellEveryone(false)" ph="Your coupon here"></coupon>
+      <h2 v-show="isApplied">You applied a Coupon</h2>
+    </div>
+  </div>
+  <script src="vue.js"></script>
+  <script src="comm1.js"></script>
+  <script>
+    Vue.component('coupon', {
+      template: '<input type="text" :placeholder="ph" @blur="applied" v-model="texty"/>',
+      props: ["ph"],
+      data: function(){
+        return {
+          texty: "",
+        }
+      },
+      methods: {
+        applied() {
+          if(this.texty == "")
+          this.$emit("empty");
+          else
+          this.$emit("applied");
+        }
+      }
+    });
+    new Vue({
+      el : '#app',
+      data: {
+        isApplied: false,
+        cpn: "dfgdf"
+      },
+      methods: {
+        tellEveryone: function(val) {
+          this.isApplied= val;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

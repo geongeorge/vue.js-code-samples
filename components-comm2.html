@@ -1,0 +1,64 @@
+<html>
+<head>
+  <title>Communication between components</title>
+  <link rel="stylesheet" href="bulma.css">
+  <style>
+     .container {
+       margin-top: 100px;
+     }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="app">
+      <coupon ph="Your coupon here"></coupon>
+      <coupon  ph="Your coupon Copy" att="disabled"></coupon>
+    </div>
+  </div>
+  <script src="vue.js"></script>
+  <script src="comm1.js"></script>
+  <script>
+  var evt = new Vue();
+    Vue.component('coupon', {
+      template: '<input type="text" :placeholder="ph" @blur="applied" v-model="texty" :disabled="att == \'disabled\'"/>',
+      props: {
+        ph: {default: ""},
+        att: {default: ""},
+      },
+      data: function(){
+        return {
+          texty: "",
+        }
+      },
+      methods: {
+        applied() {
+          if(this.texty == "")
+          evt.$emit("empty");
+          else
+          evt.$emit("applied", this.texty);
+        },
+        addtext(txt) {
+          this.texty = txt;
+        }
+      },
+      created () {
+        if(this.att != ""){
+          evt.$on("applied", (txt) => this.addtext(txt));
+        }
+      },
+    });
+    new Vue({
+      el : '#app',
+      data: {
+        isApplied: false,
+        mytext: ""
+      },
+      methods : {
+        addtext(text) {
+
+        }
+      }
+    });
+  </script>
+</body>
+</html>
