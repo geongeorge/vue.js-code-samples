@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Named Slots</title>
+  <link rel="stylesheet" href="bulma.css">
+  <style>
+     .container {
+       margin-top: 100px;
+     }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div class="container">
+      <msg @closed="msgopen = !msgopen" v-show="msgopen">
+        <template slot="heading">Hello World</template>
+        This is extreme times.
+      </msg>
+    </div>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+  window.vueEvent = new Vue();
+  Vue.component("msg", {
+    template: `
+    <article class="message">
+  <div class="message-header">
+    <p><slot name="heading">Default Heading</slot>
+    </slot></p>
+    <button @click="$emit('closed')"class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body">
+    <slot>
+
+    </slot>
+    </slot>
+  </div>
+</article>`,
+  })
+    new Vue({
+      el: "#root",
+      data: {
+        msgopen : true,
+      }
+    })
+  </script>
+</body>
+</html>
